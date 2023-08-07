@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "FickianFourier.C": "cpp",
+        "TabulatedFickianFourier.C": "cpp"
+    }
+}

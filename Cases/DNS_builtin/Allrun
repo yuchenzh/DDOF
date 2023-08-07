@@ -1,0 +1,6 @@
+cp -r 0.org 0
+blockMesh
+setFields
+decomposePar -force -fileHandler collated
+mpirun -n 4 reactingFoam -parallel -fileHandler collated
+reconstructPar

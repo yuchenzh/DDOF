@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "TabulatedFickian.C": "cpp",
+        "TabulatedFickianFourier.C": "cpp",
+        "fluidReactionThermophysicalTransportModels.C": "cpp",
+        "TabulatedFickianEddyDiffusivity.C": "cpp",
+        "tabulatedFluidReactionThermophysicalTransportModels.C": "cpp",
+        "thermophysicaltransport": "cpp",
+        "transportproperties": "cpp"
+    }
+}
