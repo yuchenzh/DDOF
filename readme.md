@@ -1,6 +1,6 @@
 # Using the builtin differential diffusion in OpenFOAM-10
 ## Introduction
-The differential diffusion transportation is availble since OpenFOAM-9. However, it is never easy to use that. A LONG and LARGE table for diffusion coefficients should be generaetd beforehand, which can be time-costing. Besides, there is no tutorial (until 2023/08/07) on the internet showing how to make this works. This repository will offer you a easy way to use that differential diffusion functionality.
+The differential diffusion transportation is available since OpenFOAM-9. However, it is never easy to use that. A LONG and LARGE table for diffusion coefficients should be generated beforehand, which can be time-consuming. Besides, there is no tutorial (until 2023/08/07) on the internet showing how to make this works. This repository will offer you an easy way to use that differential diffusion functionality.
 
 Generally, we offer two methods. 
 1. Generate that crazy table for you with a piece of Python code, using the diffusion values from Cantera. <span style="color:red;">DNS and RANS is supported natively in OpenFOAM, our library can add support for LES.</span>
@@ -36,6 +36,7 @@ ck2yaml --input=chem.inp --thermo=therm.dat --transport=tran.dat
     python getDiffPoly.py
     ```
 to generate the simplified table (for method 2).
+Note, you might need to set change some configuration settings, such as the range of pressure and temperature (See 'getDiffTable.py' and 'getDiffPoly.py').
 
 ### Put the table in the constant folder of your case
 
