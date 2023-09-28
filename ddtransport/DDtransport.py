@@ -40,7 +40,7 @@ class DDTransport:
     
         # initialize gas. The gas is used to retrieve fitting coeffs
         self.gas = ct.Solution(self.mechanism)
-        self.gas.TPX = 300, 101325, "Ar:1"
+        self.gas.TPX = 300, 101325, "O2:1"
         self.transport_model = "Mix"
 
     def generateTableForASpeciesNamePair(self, speciesA, speciesB, maxRefinementLevel = 5):
