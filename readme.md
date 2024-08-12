@@ -80,7 +80,7 @@ To fix it, the "ddpolynomialTransport" is implemented. Please generate the polyn
 ```bash
 python getThermoPoly.py
 ```
-The generated file should be included in the constant directory. With this transport, slightly better results are expected.
+The generated file should be included in the constant directory. Please note that the transport model now should be "ddpolynomial" instead of "sutherland" With this transport, slightly better results are expected.
 ![Premixed hydrogen flame speed](./pics/FlameSpeed.png)
 
 A test case (phi10) is put in the Cases folder.
