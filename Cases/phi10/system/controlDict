@@ -1,0 +1,91 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  10
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version         2;
+    format          ascii;
+    class           dictionary;
+    location        "system";
+    object          controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+application     reactingDNS;
+
+startFrom       latestTime;
+
+startTime       0;
+
+stopAt          endTime;
+
+endTime         0.0025;
+
+deltaT          1e-07;
+
+writeControl    adjustableRunTime;
+
+writeInterval   0.0001;
+
+purgeWrite      0;
+
+writeFormat     ascii;
+
+writePrecision  10;
+
+writeCompression off;
+
+timeFormat      general;
+
+timePrecision   10;
+
+runTimeModifiable true;
+
+adjustTimeStep  yes;
+
+maxDeltaT       1e-06;
+
+maxCo           0.3;
+
+libs            ("libtabulatedFluidReactionThermophysicalTransportModels.so");
+
+functions
+{
+  surfaceFieldValue1
+  {
+      type            surfaceFieldValue;
+      libs            ("libfieldFunctionObjects.so");
+
+      log             true;
+      writeControl    writeTime;
+      writeFields     true;
+
+      surfaceFormat   none;
+      regionType      sampledSurface;
+      name            f0;
+
+      sampledSurfaceDict 
+      {
+        type      isoSurface;
+        isoField  O2;
+        isoValue 0.1;
+        interpolate true;
+      }
+      
+
+      operation       average;
+
+      //weightField     none;
+
+      fields
+      (
+          flameSpeed
+      );
+  }
+}
+
+// ************************************************************************* //

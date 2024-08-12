@@ -1,3 +1,5 @@
 tabulatedFluidReactionThermophysicalTransportModels.C
+ddpolynomial/reactionThermo/psiReactionThermo/psiReactionThermos.C
+ddpolynomial/reactionThermo/rhoReactionThermo/rhoReactionThermos.C
 
 LIB = $(FOAM_USER_LIBBIN)/libtabulatedFluidReactionThermophysicalTransportModels

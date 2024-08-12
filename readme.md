@@ -70,6 +70,23 @@ laminar
 libs ("libtabulatedFluidReactionThermophysicalTransportModels.so");
 ```
 
+### Validation and update (2024/08/13)
+The premixed hydrogen flame speed is validated with cantera results.
+
+We found around 5% under prediction. At least part of the reason is due to inaccurate thermal conductivity prediction of sutherland transport.
+![Inaccurate thermal conductivity prediction by Sutherland](./pics/kappa.png)
+
+To fix it, the "ddpolynomialTransport" is implemented. Please generate the polynomials with the folloing code. Please note that you might need to set up the mechanism and fitting informations.
+```bash
+python getThermoPoly.py
+```
+The generated file should be included in the constant directory. With this transport, slightly better results are expected.
+![Premixed hydrogen flame speed](./pics/FlameSpeed.png)
+
+A test case (phi10) is put in the Cases folder.
+
+
+
 ## Examples
 We offer a 1D hydrogen flame case using DNS, LES and RANS model, with both simplified and complex tables.
 - 'Cases/DNS-builtin'  (DNS, complex table)

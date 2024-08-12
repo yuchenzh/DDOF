@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "psiReactionThermos.C": "cpp",
+        "rhoReactionThermos.C": "cpp"
+    }
+}
