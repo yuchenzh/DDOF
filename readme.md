@@ -38,7 +38,7 @@ ck2yaml --input=chem.inp --thermo=therm.dat --transport=tran.dat
 to generate the simplified table (for method 2).
 Note, you might need to set change some configuration settings, such as the range of pressure and temperature (See 'getDiffTable.py' and 'getDiffPoly.py').
 
-### Put the table in the constant folder of your case
+### Put the table in the constant folder of your case as a separate file
 
 ### Configure the thermophysicalTransport file
 See the following example. You can find more examples from 'Cases' folder
