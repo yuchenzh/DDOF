@@ -27,7 +27,7 @@ def writeArrayWithColons(array):
     return toWrite
 
 class DDTransport:
-    def __init__(self, mechenism, prange, Trange, accuracy = 0.05, debug = False):
+    def __init__(self, mechenism, prange, Trange, accuracy = 0.05, upper = False, debug = False):
         self.mechanism = mechenism
         self.plow  = prange[0]
         self.phigh = prange[1]
@@ -35,6 +35,7 @@ class DDTransport:
         self.Thigh = Trange[1]
         self.debug = debug
         self.accuracy = accuracy
+        self.upper = upper
         
         self.pArray = logspace(self.plow, self.phigh, 0.5*accuracy)
     
@@ -101,7 +102,10 @@ class DDTransport:
         pArray = self.pArray
         
         # generate other relevant informations
-        nameij = speciesA.upper() + "-" + speciesB.upper()+ "\n"
+        if (self.upper):
+            nameij = speciesA.upper() + "-" + speciesB.upper()+ "\n"
+        else:
+            nameij = speciesA + "-" + speciesB+ "\n"
 
         startBracket = "{" + "\n"
         endBracket   = "}" + "\n"
@@ -196,7 +200,11 @@ class DDTransport:
         # print out each species pair
         for i in range(len(speciesList)):
             for j in range(i, len(speciesList)):
-                nameij = speciesList[i].upper() + "-" + speciesList[j].upper()
+                nameij = ""
+                if (self.upper):
+                    nameij = speciesList[i].upper() + "-" + speciesList[j].upper()
+                else:
+                    nameij = speciesList[i] + "-" + speciesList[j]
                 contents = writeArrayWithColons(self.gas.get_binary_diff_coeffs_polynomial(i, j))
                 entry = "{}\t\t{{polyCoeffs\t{};}}\n".format(nameij, contents)
                 

@@ -32,9 +32,13 @@ debug = False
 # Max refinement level: If the accuracy of the table is not desired, it will refine itself.
 mrf = 5
 
+# Careful Set true if you want all your species names in upper case
+# for mech.yaml in this repository, you need to set it true to make it work
+# BUT FOR MOST MECHANISMS, SET IT TO BE FALSE
+upper = True
 # ---- End of user input ----
 
 
 # ---- Main program ----
-DD = DDTransport(mech, prange, Trange, accuracy, debug)
+DD = DDTransport(mech, prange, Trange, accuracy, upper, debug)
 DD.writeDiffPolyNomials()
