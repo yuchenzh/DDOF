@@ -41,4 +41,4 @@ upper = True
 
 # ---- Main program ----
 DD = DDTransport(mech, prange, Trange, accuracy, upper, debug)
-DD.writeDiffPolyNomials()
+DD.writeDiffPolyNomials(native = True)

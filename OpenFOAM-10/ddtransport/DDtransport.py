@@ -184,7 +184,7 @@ class DDTransport:
         print("transportProperties file generated successfully")
         
         
-    def writeDiffPolyNomials(self):
+    def writeDiffPolyNomials(self, native = False):
         # retrieve species list
         speciesList = self.gas.species_names
         
@@ -206,7 +206,13 @@ class DDTransport:
                 else:
                     nameij = speciesList[i] + "-" + speciesList[j]
                 contents = writeArrayWithColons(self.gas.get_binary_diff_coeffs_polynomial(i, j))
-                entry = "{}\t\t{{polyCoeffs\t{};}}\n".format(nameij, contents)
+
+                if (not native):
+                    print("here")
+                    entry = "{}\t\t{{polyCoeffs\t{};}}\n".format(nameij, contents)
+                else:
+                    # print("there")
+                    entry = "{}\t\t{{type binaryDiffusionCoefficient; coeffs\t{};}}\n".format(nameij, contents)
                 
                 
                 # write the current entry to file, using the append mode

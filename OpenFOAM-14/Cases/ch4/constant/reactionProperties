@@ -1,0 +1,51 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  14
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      reactionProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+reactionModel  laminar;
+
+// Flamelet initialisation read by flameFoam on a fresh start (t < 1e-10).
+// A missing initPMFDict is a fatal error.
+initPMFDict
+{
+    flameFile   "pmf.h5";   // HDF5 flamelet, path relative to the case
+    anchorT     1500;       // [K] flamelet iso-T to pin in the domain
+    anchorDim   x;          // coordinate direction: x | y | z
+    flucDim     y;          // coordinate direction: x | y | z
+    reverse     false;      // false: flame at small coord, cold at large;
+                            // true:  flame at large coord, cold at small
+
+    anchorLoc 
+    {
+        // type constant;
+        // value 0.01;
+        type coded;
+        name anchorLoc;
+
+        codeInclude
+        #{
+            #include "mathematicalConstants.H"
+        #};
+        code
+        #{
+            return 0.015 + 0.001*sin(500*3.1415926*x);
+        #};
+    }
+
+
+}
+
+// ************************************************************************* //
